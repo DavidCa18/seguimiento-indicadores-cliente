@@ -1,0 +1,1399 @@
+<!-- Row -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header bg-success">
+                <h4 class="m-b-0 text-white" align="center">REFORMA PRESUSPUESTARIA</h4>
+            </div>
+            <div class="card-body">
+               
+                    <div class="form-body">
+
+                        <hr>
+                        <div class="row p-t-20">
+
+                            <div class="col-md-12">
+                                <div class="form-group has-success">
+                                    <label class="control-label">Seleccione Requirente</label>
+                                    <select class="form-control custom-select"  [(ngModel)]="reformaModelo.requirente">
+                                        <option value="RECTORADO">RECTORADO</option>
+                                        <option value="SEDE">SEDE</option>
+                                        <option value="VICERECTORADO">VICERECTORADO</option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group has-success">
+                                    <label class="control-label">Número de Modificación Presupuestaria:</label>
+                                    <input type="text" id="firstName" class="form-control"[(ngModel)]="reformaModelo.numeroModificacion"
+                                        placeholder="Numeración interna del requirente"
+                                        >
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">FECHA </label>
+                                    <input type="date" class="form-control" placeholder="dd/mm/yyyy" [(ngModel)]="reformaModelo.fechapresupuestaria"
+                                       >
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Tpo de gasto</label>
+                                    <input type="text" id="firstName" class="form-control" placeholder="Tipo de gasto" [(ngModel)]="reformaModelo.tipoGasto"
+                                      >
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group has-success">
+                                    <label class="control-label">Tipo de modificación:</label>
+                                    <select class="form-control custom-select"  [(ngModel)]="reformaModelo.tipoModificacion" >
+                                        <option value="Traspasos de créditos dentro de la actividad ">Traspasos de
+                                            créditos dentro de la actividad </option>
+                                        <option value="Traspaso de créditos entre actividades">Traspaso de créditos
+                                            entre actividades</option>
+
+                                    </select>
+
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Monto solicitado:</label>
+                                    <input type="text" id="firstName" class="form-control" placeholder="Monto" [(ngModel)]="reformaModelo.montoSolicitado"
+                                       >
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Justificación:</label>
+                                    <input type="text" id="firstName" class="form-control" placeholder=""[(ngModel)]="reformaModelo.justificacion"
+                                     >
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <p><b>La Norma Técnica de Presupuesto del Ministerio de Finanzas No. 2.3.4.3
+                                            MODIFICACIONES AL PRESUPUESTO Las modificaciones al presupuesto se
+                                            sustentarán en un informe técnico que respalde la necesidad y el propósito
+                                            de su realización. Adicionalmente, se deberá contar con un informe de la
+                                            Unidad de Planificación Institucional respecto de su efecto en el plan anual
+                                            institucional y en el cumplimiento de las metas de resultados de los
+                                            programas involucrados. Al informe se incorporará los documentos de soporte
+                                            pertinentes, según el caso.
+                                            -Resolución 2020-001-ESPE-a-1 de fecha, Artículo 27.- Delegar las
+                                            aprobaciones de reforma presupuestarias para el cumplimiento de los
+                                            objetivos de las Universidad de las Fuerzas Armadas ESPE, en gasto
+                                            permanente y no permanente, entre proyectos/programas/unidades/actividades,
+                                            siempre y cuando no se afecte el techo presupuestario institucional y se
+                                            cuente con el informe favorable del Vicerrectorado Administrativo. </b>
+                                    </p>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label">RESOLUCIÓN</label>
+                                    <input type="text" id="firstName" class="form-control" placeholder="" 
+                                     [(ngModel)]="reformaModelo.resolucion" >
+
+                                </div>
+                            </div>
+
+
+
+                            <!--/span-->
+                        </div>
+                        <!--/row-->
+
+                        <div class="card-header text-white  bg-success"><img
+                                src="../../../assets/images/documento.png" />&nbsp;<b>MODIFICACIÓN PRESUPUESTARIA: </b>
+                        </div>
+                        <!-- Inicio cambio diseño referencia comerciales -->
+                   
+                        <div class="card-body ">
+                            <div class="row m-0 justify-content-center align-items-center vh-100  ">
+
+
+
+                                <div >
+
+                                    <div >
+
+
+
+                                        <table class="table table-bordered">
+                                            <tbody  *ngFor="let item of reformaModelo.modificacionPresupuestaria">
+                                                <tr>
+                                                    <td id="colorTituloRF"></td>
+                                                    <td align="center" id="colorTituloRF"><strong>PARTIDA ORIGEN &nbsp;
+                                                        </strong>
+                                                    </td>
+                                                    <td align="center" id="colorTituloRF"><strong>PARTIDA DESTINO&nbsp;
+                                                        </strong>
+                                                    </td>
+                                                </tr>
+
+                                                <tr >
+                                                    <td>LINEA POA</td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control" 
+                                                          placeholder=""
+                                                       [(ngModel)]="item.lineaPoa"   >
+                                                    </td>
+
+                                                    <td>
+                                                        <input type="text" id="firstName" class="form-control"
+                                                            placeholder=""
+                                                         [(ngModel)]="item.lineaPoa1"  >
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>EOD</td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                         [(ngModel)]="item.eod"    placeholder="" >
+                                                    </td>
+
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                        [(ngModel)]="item.eod1"   placeholder=""
+                                                         >
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>ESTRUCTURA PROGRAMÁTICA</td>
+                                                    <td>
+                                                        <input type="text" id="firstName" class="form-control"
+                                                             placeholder=""
+                                                         [(ngModel)]="item.estructuraProgramatica"   >
+
+                                                    </td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                          placeholder=""
+                                                          [(ngModel)]="item.estructuraProgramatica1"   >
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>NOMBRE DE LA ACTIVIDAD/PROYECTO</td>
+                                                    <td>
+                                                        <input type="text" id="firstName" class="form-control"
+                                                           placeholder=""
+                                                       [(ngModel)]="item.actividadProyectos"   >
+                                                    </td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                             placeholder=""
+                                                             [(ngModel)]="item.actividadProyectos1"    >
+                                                        <!-- <input > -->
+
+                                                    </td>
+
+                                                </tr>
+
+                                                <tr>
+                                                    <td>FUENTE DE FINANCIAMIENTO</td>
+                                                    <td>
+                                                        <input type="text" id="firstName" class="form-control"
+                                                             placeholder=""
+                                                      [(ngModel)]="item.fuenteFinanciamiento"    >
+                                                        <!-- <input > -->
+
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" id="firstName" class="form-control"
+                                                            placeholder=""
+                                                            [(ngModel)]="item.fuenteFinanciamiento1"    >
+                                                        <!-- <input > -->
+
+                                                    </td>
+
+                                                </tr>
+
+                                                <tr>
+                                                    <td>DETALLE DE LA PARTIDA</td>
+                                                    <td>
+                                                        <input type="text" id="firstName" class="form-control"
+                                                            placeholder=""
+                                                          [(ngModel)]="item.detallePartida"  >
+
+
+
+                                                    </td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                           placeholder=""
+                                                           [(ngModel)]="item.detallePartida1"  >
+
+
+
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>ITEM PRESUPUESTARIO</td>
+                                                    <td>
+                                                        <input type="text" id="firstName" class="form-control"
+                                                            placeholder=""
+                                                         [(ngModel)]="item.itemPresupuestario" >
+
+
+
+                                                    </td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                            placeholder=""
+                                                            [(ngModel)]="item.itemPresupuestario1" >
+
+
+
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td> SALDO POR COMPROMETER </td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                            placeholder=""
+                                                        [(ngModel)]="item.saldoComprometer"    >
+
+
+
+                                                    </td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                          placeholder=""
+                                                          [(ngModel)]="item.saldoComprometer1"    >
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>CERTIFICADO </td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                          placeholder=""
+                                                         [(ngModel)]="item.certificado"  >
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" id="firstName" class="form-control"
+                                                        [(ngModel)]="item.certificado1"    placeholder=""
+                                                         >
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> INCREMENTO </td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                             placeholder=""
+                                                      [(ngModel)]="item.incremento"   >
+
+
+
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" id="firstName" class="form-control"
+                                                            placeholder=""
+                                                            [(ngModel)]="item.incremento1"   >
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td> REDUCCIÓN </td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                           placeholder=""
+                                                         [(ngModel)]="item.reduccion"  >
+                                                    </td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                            placeholder=""
+                                                            [(ngModel)]="item.reduccion1"   >
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>NUEVO SALDO </td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                           placeholder=""
+                                                         [(ngModel)]="item.nuevosaldo"   >
+                                                    </td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                            placeholder=""
+                                                            [(ngModel)]="item.nuevosaldo"  >
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                        <!-- Fin cambio de diseño -->
+                        <!--REPROGRAMACION FINANCIERA-->
+                        <div class="card-header text-white  bg-success"><img
+                                src="../../../assets/images/documento.png" />&nbsp;<b>REPROGRAMACIÓN FINANCIERA (mes de
+                                ejecución de presupuesto): </b>
+                        </div>
+                        <!-- Inicio cambio diseño referencia comerciales -->
+                     
+                        <div class="card-body ">
+                            <div class="row m-0 justify-content-center align-items-center vh-100  ">
+
+
+
+                                <div 
+                                  >
+
+                                    <div >
+
+
+
+                                        <table class="table table-bordered">
+                                            <tbody *ngFor="let rep of reformaModelo.reprogramacionFinaciera">
+                                                <tr>
+                                                    <td id="colorTituloRF"></td>
+                                                    <td align="center" id="colorTituloRF"><strong>PARTIDA ORIGEN &nbsp;
+                                                        </strong>
+                                                    </td>
+                                                    <td align="center" id="colorTituloRF"><strong>PARTIDA DESTINO&nbsp;
+                                                        </strong>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>DETALLE DE LA PARTIDA</td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                           placeholder=""
+                                                        [(ngModel)]="rep.detallePartida"  >
+                                                    </td>
+
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                           placeholder=""
+                                                           [(ngModel)]="rep.detallePartida1"   >
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>NÚMERO DE PARTIDA</td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                           placeholder=""
+                                                      [(ngModel)]="rep.numeroPartida"   >
+
+                                                    </td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                         placeholder=""
+                                                         [(ngModel)]="rep.numeroPartida1"   >
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>NUEVO SALDO </td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                            placeholder=""
+                                                         [(ngModel)]="rep.nuevoSaldo"  >
+                                                    </td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                            placeholder=""
+                                                            [(ngModel)]="rep.nuevoSaldo1" >
+                                                        <!-- <input > -->
+
+                                                    </td>
+
+                                                </tr>
+
+                                                <tr>
+                                                    <td>PROGRAMACIÓN DE EJECUCIÓN (POA)</td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                           placeholder=""
+                                                      [(ngModel)]="rep.ejecucionPoa"   >
+                                                        <!-- <input > -->
+
+                                                    </td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                         placeholder=""
+                                                         [(ngModel)]="rep.ejecucionPoa1"  >
+                                                        <!-- <input > -->
+
+                                                    </td>
+
+                                                </tr>
+
+                                                <tr>
+                                                    <td>ENERO</td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                            placeholder=""
+                                                        [(ngModel)]="rep.enero"   >
+
+
+
+                                                    </td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                           placeholder=""
+                                                           [(ngModel)]="rep.enero1"  >
+
+
+
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>FEBRERO</td>
+                                                    <td>
+                                                        <input type="text" id="firstName" class="form-control"
+                                                           placeholder=""
+                                                       [(ngModel)]="rep.febrero"  >
+
+
+
+                                                    </td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                           placeholder=""
+                                                           [(ngModel)]="rep.febrero1"   >
+
+
+
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>MARZO</td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                           placeholder=""
+                                                      [(ngModel)]="rep.marzo"  >
+
+
+
+                                                    </td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                            placeholder=""
+                                                            [(ngModel)]="rep.marzo1"   >
+
+
+
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>ABRIL</td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                          placeholder=""
+                                                       [(ngModel)]="rep.abril"    >
+
+
+
+                                                    </td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                            placeholder=""
+                                                            [(ngModel)]="rep.abril1"  >
+
+
+
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>MAYO</td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                          placeholder=""
+                                                        [(ngModel)]="rep.mayo"   >
+
+
+
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" id="firstName" class="form-control"
+                                                           placeholder=""
+                                                           [(ngModel)]="rep.mayo1"    >
+
+
+
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>JUNIO</td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                          placeholder=""
+                                                      [(ngModel)]="rep.junio"       >
+
+
+
+                                                    </td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                           placeholder=""
+                                                           [(ngModel)]="rep.junio1"   >
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>JULIO </td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                           placeholder=""
+                                                           [(ngModel)]="rep.julio"      >
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" id="firstName" class="form-control"
+                                                          placeholder=""
+                                                          [(ngModel)]="rep.julio1"    >
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>AGOSTO </td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                          placeholder=""
+                                                         [(ngModel)]="rep.agosto"  >
+
+
+
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" id="firstName" class="form-control"
+                                                           placeholder=""
+                                                           [(ngModel)]="rep.agosto1"     >
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td> SEPTIEMBRE</td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                             placeholder=""
+                                                        [(ngModel)]="rep.septiembre"   >
+                                                    </td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                           placeholder=""
+                                                           [(ngModel)]="rep.septiembre1"    >
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>OCTUBRE </td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                           placeholder=""
+                                                       [(ngModel)]="rep.octubre"    >
+                                                    </td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                           placeholder=""
+                                                           [(ngModel)]="rep.octubre1"     >
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>NOVIEMBRE</td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                            placeholder=""
+                                                         [(ngModel)]="rep.noviembre"   >
+                                                    </td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                            placeholder=""
+                                                            [(ngModel)]="rep.noviembre1"  >
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>DICIEMBRE </td>
+                                                    <td>
+                                                        <input type="text" id="firstName" class="form-control"
+                                                          placeholder=""
+                                                       [(ngModel)]="rep.diciembre"   >
+                                                    </td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                           placeholder=""
+                                                           [(ngModel)]="rep.diciembre1"    >
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td> TOTAL REPROGRAMACIÓN </td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                           placeholder=""
+                                                        [(ngModel)]="rep.reprogramacionTotal"   >
+                                                    </td>
+                                                    <td >
+                                                        <input type="text" id="firstName" class="form-control"
+                                                          placeholder=""
+                                                          [(ngModel)]="rep.reprogramacionTotal1" >
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                        <!-- Fin cambio de diseño -->
+
+
+                        <div class="container fileUploadWrapper">
+                            <div class="row">
+                                <!-- Progress Bar -->
+                                <div class="col-md-12" *ngIf="progress">
+                                    <div class="progress form-group">
+                                        <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                                            [style.width.%]="progress">
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3 align="center"><b> DOCUMENTOS DE SOPORTE PARA LA ELABORACIÓN DEL INFORME:</b></h3>
+                                <div class="col-md-12">
+                                    <label class="text-danger" for="tipoDeArchivp">Por favor los documentos deben ser
+                                        adjuntados en un solo archivo de formato ".pdf" </label>
+                                    <div class="fileupload" appDragDropFileUpload (click)="fileField.click()"
+                                        (fileDropped)="upload($event)">
+                                        <span class="ddinfo">Presione Aqui para Subir Archivo</span>
+                                        <input type="file" accept=".pdf" name="avatars" #fileField
+                                            (change)="upload($event.target.files)" hidden multiple>
+
+                                    </div>
+
+                                    <div class="alert alert-success " role="alert "><em>Anexo 1: Deben incluirse los documentos que sustentan la justificación, debidamente legalizados. Es de cumplimiento obligatorio. </em></div>
+
+
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="image-list" *ngFor="let file of fileArr; let i = index">
+                                        <div class="profile">
+                                            <img [src]="sanitize(file['url'])" alt="">
+                                        </div>
+                                        <p>{{file.item.name}}</p>
+                                    </div>
+                                    <p class="message">{{msg}}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                         <div class="card-body">
+                             <table>
+                             <tbody>
+                                <tr>
+                                 
+                                </tr>
+                                <tr >
+                                    <td>VER DOCUMENTO :</td>
+                                    <td *ngFor="let doc of reformaModelo.urlPdf" >
+                                        <a   *ngIf="doc != null" href="{{doc}}" class="btn btn-primary" target="_blank">ABRIR</a>
+                                        <a   *ngIf="doc == null" class="btn btn-warning"  (click)="nohay()">DOCUMENTO</a>
+                                    </td>
+
+                                  
+                                </tr>
+
+
+                             </tbody>
+
+
+                             </table>
+
+                         </div>
+                           
+                     
+
+                        <!--/row-->
+
+                        <div class="card-header text-white  bg-success"><img
+                            src="../../../assets/images/documento.png" />&nbsp;<b>DECLARATORIA DE LOS REQUIRENTES </b>
+                        </div>
+
+                        <div class="card-body ">
+                            <div class="row m-0 justify-content-center align-items-center vh-100  ">
+
+
+
+                                <div >
+
+                                    <div>
+
+
+
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                                <tr>
+                                                    <td id="colorTituloRF">Requisito</td>
+                                                    <td align="center" id="colorTituloRF">Estado<strong> &nbsp;
+                                                        </strong>
+                                                    </td>
+                                               
+                                                </tr>
+                                                <tr>
+                                                    <td>La modificación presupuestaria afecta a los Objetivos Estratégicos del POA del año en curso</td>
+                                                    <td >
+                                                        <select class="form-control custom-select" [(ngModel)]="reformaModelo.requisito1" >
+                                                            <option value="SI">SI</option>
+                                                            <option value="NO">NO</option>
+                    
+                                                        </select>
+                                                    </td>
+
+                                                 
+
+                                                </tr>
+                                                <tr>
+                                                    <td>La modificación presupuestaria afecta a los Indicadores del POA del año en curso</td>
+                                                    <td>
+                                                        <select class="form-control custom-select"[(ngModel)]="reformaModelo.requisito2" >
+                                                            <option value="SI">SI</option>
+                                                            <option value="NO">NO</option>
+                    
+                                                        </select>
+                                                    </td>
+                                               
+
+                                                </tr>
+                                                <tr>
+                                                    <td>La modificación presupuestaria afecta al cumplimiento de metas de resultados de los programas involucrados </td>
+                                                    <td >
+                                                        <select class="form-control custom-select" [(ngModel)]="reformaModelo.requisito3">
+                                                            <option value="SI">SI</option>
+                                                            <option value="NO">NO</option>
+                    
+                                                        </select>
+                                                    </td>
+                                                
+
+                                                </tr>
+
+                                                <tr>
+                                                    <td>La tarea consta en el POA del año en curso</td>
+                                                    <td>
+                                                        <select class="form-control custom-select" [(ngModel)]="reformaModelo.requisito4" >
+                                                            <option value="SI">SI</option>
+                                                            <option value="NO">NO</option>
+                    
+                                                        </select>
+                                                        <!-- <input > -->
+
+                                                    </td>
+                                                  
+
+                                                </tr>
+
+                                                <tr>
+                                                    <td>Descripción / Análisis de los requisitos: </td>
+                                                    <td >
+                                                        <textarea  type="text " class="form-control "[(ngModel)]="reformaModelo.descripcion">
+                                                        </textarea>
+                                                    </td>
+                                               
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--firma de los requirientes-->
+                        <div class="card-header text-white  bg-success"><img
+                            src="../../../assets/images/documento.png" />&nbsp;<b>FIRMAS DE RESPONSABILIDAD DE LOS REQUIRENTES DE LA MODIFICACIÓN PRESUPUESTARIA: </b>
+                        </div>
+
+                        <div class="card-body ">
+                            <div class="row m-0 justify-content-center align-items-center vh-100  ">
+                                <div>
+                                    <div>
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                                <tr>
+                                                    <td align="center" id="colorTituloRF"> </td>
+                                                    <td align="center" id="colorTituloRF">Nombre</td>
+                                                    <td align="center" id="colorTituloRF">Cargo</td>
+                                                    <td align="center" id="colorTituloRF">Firma</td>
+                                                    <td align="center" id="colorTituloRF">Fecha</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Elaborado por: </td>
+                                                    <td>
+                                                            <input type="text " class="form-control "[(ngModel)]="reformaModelo.firmaResponsabilidad">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text " class="form-control "[(ngModel)]="reformaModelo.firmaResponsabilidad1">
+                                                    </td>
+                                                    <td style="width:200px"></td>
+                                                    <td>
+                                                            <input type="date" class="form-control" [(ngModel)]="reformaModelo.firmaResponsabilidad2">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Revisado por: </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" [(ngModel)]="reformaModelo.firmaResponsabilidad3">                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" [(ngModel)]="reformaModelo.firmaResponsabilidad4">                                                    </td>
+                                                    <td style="width:200px"></td>
+                                                    <td>
+                                                        <input type="date" class="form-control" [(ngModel)]="reformaModelo.firmaResponsabilidad5">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Aprobado por: </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" [(ngModel)]="reformaModelo.firmaResponsabilidad6">                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" [(ngModel)]="reformaModelo.firmaResponsabilidad7">                                                    </td>
+                                                    <td style="width:200px"></td>
+                                                    <td>
+                                                        <input type="date" class="form-control" [(ngModel)]="reformaModelo.firmaResponsabilidad8">
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--fin firma de requirientes-->
+
+                        <!--Analisis del POA-->
+                        <div class="card-header text-white  bg-success"><img
+                            src="../../../assets/images/documento.png" />&nbsp;<b>ANÁLISIS RESPECTO DEL POA </b>
+                        </div>
+
+                        <div class="card-body ">
+                            <div class="row m-0 justify-content-center align-items-center vh-100  ">
+
+
+
+                                <div >
+
+                                    <div>
+
+
+
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                                <tr>
+                                                    <td id="colorTituloRF">Requisito</td>
+                                                    <td align="center" id="colorTituloRF">Estado<strong> &nbsp;
+                                                        </strong>
+                                                    </td>
+                                               
+                                                </tr>
+                                                <tr>
+                                                    <td>La modificación presupuestaria afecta a los Objetivos Estratégicos del POA del año en curso </td>
+                                                    <td >
+                                                        <select class="form-control custom-select" [(ngModel)]="reformaModelo.analisisInformeRequisito" >
+                                                            <option value="SI">SI</option>
+                                                            <option value="NO">NO</option>
+                    
+                                                        </select>
+                                                    </td>
+
+                                                 
+
+                                                </tr>
+                                                <tr>
+                                                    <td>La modificación presupuestaria afecta a los Indicadores del POA del año en curso </td>
+                                                    <td>
+                                                        <select class="form-control custom-select"[(ngModel)]="reformaModelo.analisisInformeRequisito2" >
+                                                            <option value="SI">SI</option>
+                                                            <option value="NO">NO</option>
+                    
+                                                        </select>
+                                                    </td>
+                                               
+
+                                                </tr>
+                                                <tr>
+                                                    <td>La modificación presupuestaria afecta al cumplimiento de metas de resultados de los programas involucrados </td>
+                                                    <td >
+                                                        <select class="form-control custom-select" [(ngModel)]="reformaModelo.analisisInformeRequisito3">
+                                                            <option value="SI">SI</option>
+                                                            <option value="NO">NO</option>
+                    
+                                                        </select>
+                                                    </td>
+                                                
+
+                                                </tr>
+
+                                                <tr>
+                                                    <td>La tarea consta en el POA del año en curso </td>
+                                                    <td>
+                                                        <select class="form-control custom-select" [(ngModel)]="reformaModelo.analisisInformeRequisito4" >
+                                                            <option value="SI">SI</option>
+                                                            <option value="NO">NO</option>
+                    
+                                                        </select>
+                                                        <!-- <input  > -->
+
+                                                    </td>
+                                                  
+
+                                                </tr>
+
+                                                <tr>
+                                                    <td>Descripción / Análisis de los requisitos: </td>
+                                                    <td >
+                                                        <textarea  type="text " class="form-control "[(ngModel)]="reformaModelo.analisisInformeRequisitoDescripcion">
+                                                        </textarea>
+                                                    </td>
+                                               
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Fin Analisis del POA-->
+
+                        <!--inicio firma Analisis del POA-->
+                        <div class="card-body ">
+                            <div class="row m-0 justify-content-center align-items-center vh-100  ">
+                                <div>
+                                    <div>
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                                <tr>
+                                                    <td align="center" id="colorTituloRF"> </td>
+                                                    <td align="center" id="colorTituloRF">Nombre</td>
+                                                    <td align="center" id="colorTituloRF">Cargo</td>
+                                                    <td align="center" id="colorTituloRF">Firma</td>
+                                                    <td align="center" id="colorTituloRF">Fecha</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Revisado por: </td>
+                                                    <td>
+                                                            <input type="text " class="form-control "[(ngModel)]="reformaModelo.firmaAnalisisPoa">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text " class="form-control "[(ngModel)]="reformaModelo.firmaAnalisisPoa1">
+                                                    </td>
+                                                    <td style="width:200px"></td>
+                                                    <td>
+                                                            <input type="date" class="form-control" [(ngModel)]="reformaModelo.firmaAnalisisPoa2">
+                                                    </td>
+                                                </tr>
+                            
+
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Fin firma Analisis del POA-->
+
+                        <!-- ANÁLISIS DEL INFORME TÉCNICO-->
+                        <div class="card-header text-white  bg-success"><img
+                            src="../../../assets/images/documento.png" />&nbsp;<b>ANÁLISIS DEL INFORME TÉCNICO </b>
+                        </div>
+
+                        <div class="card-body ">
+                            <div class="row m-0 justify-content-center align-items-center vh-100  ">
+
+
+
+                                <div >
+
+                                    <div>
+
+
+
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                                <tr>
+                                                    <td id="colorTituloRF">Requisito</td>
+                                                    <td align="center" id="colorTituloRF">Estado<strong> &nbsp;
+                                                        </strong>
+                                                    </td>
+                                               
+                                                </tr>
+                                                <tr>
+                                                    <td>Existe modificación del techo presupuestario de la Universidad </td>
+                                                    <td >
+                                                        <select class="form-control custom-select" [(ngModel)]="reformaModelo.analistaTecnico1" >
+                                                            <option value="SI">SI</option>
+                                                            <option value="NO">NO</option>
+                    
+                                                        </select>
+                                                    </td>
+
+                                                 
+
+                                                </tr>
+                                                <tr>
+                                                    <td>La modificación presupuestaria que consta en el punto 1.2 de este informe es viable </td>
+                                                    <td>
+                                                        <select class="form-control custom-select"[(ngModel)]="reformaModelo.analistaTecnico2" >
+                                                            <option value="SI">SI</option>
+                                                            <option value="NO">NO</option>
+                    
+                                                        </select>
+                                                    </td>
+                                               
+
+                                                </tr>
+                                                <tr>
+                                                    <td>La reprogramación de ejecución que consta en el punto 1.3  de este informe es viable </td>
+                                                    <td >
+                                                        <select class="form-control custom-select" [(ngModel)]="reformaModelo.analistaTecnico3">
+                                                            <option value="SI">SI</option>
+                                                            <option value="NO">NO</option>
+                    
+                                                        </select>
+                                                    </td>
+                                                
+
+                                                </tr>
+
+                                                <tr>
+                                                    <td>Descripción / análisis y verificación: </td>
+                                                    <td >
+                                                        <textarea  type="text " class="form-control "[(ngModel)]="reformaModelo.analistaTecnicoDescripcion">
+                                                        </textarea>
+                                                    </td>
+                                               
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- FIN ANÁLISIS DEL INFORME TÉCNICO-->
+
+                         <!-- INICIO FIRMA DEL INFORME TÉCNICO-->
+                         <div class="card-body ">
+                            <div class="row m-0 justify-content-center align-items-center vh-100  ">
+                                <div>
+                                    <div>
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                                <tr>
+                                                    <td align="center" id="colorTituloRF"> </td>
+                                                    <td align="center" id="colorTituloRF">Nombre</td>
+                                                    <td align="center" id="colorTituloRF">Cargo</td>
+                                                    <td align="center" id="colorTituloRF">Firma</td>
+                                                    <td align="center" id="colorTituloRF">Fecha</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Validado por: </td>
+                                                    <td>
+                                                            <input type="text " class="form-control "[(ngModel)]="reformaModelo.firmaTecnico">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text " class="form-control "[(ngModel)]="reformaModelo.firmaTecnico1">
+                                                    </td>
+                                                    <td style="width:200px"></td>
+                                                    <td>
+                                                            <input type="date" class="form-control" [(ngModel)]="reformaModelo.firmaTecnico2">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Aprobado por: </td>
+                                                    <td>
+                                                            <input type="text " class="form-control "[(ngModel)]="reformaModelo.firmaTecnico3">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text " class="form-control "[(ngModel)]="reformaModelo.firmaTecnico4">
+                                                    </td>
+                                                    <td style="width:200px"></td>
+                                                    <td>
+                                                            <input type="date" class="form-control" [(ngModel)]="reformaModelo.firmaTecnico5">
+                                                    </td>
+                                                </tr>
+                            
+
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                          <!-- FIN  FIRMA DEL ANÁLISIS DEL INFORME TÉCNICO-->
+
+                        <!--MODIFICACIÓN PRESUPUESTARIA-->
+                        <div class="card-header text-white  bg-success"><img
+                            src="../../../assets/images/documento.png" />&nbsp;<b>MODIFICACIÓN PRESUPUESTARIA </b>
+                        </div>
+
+                        <div class="card-body ">
+                            <div class="row m-0 justify-content-center align-items-center vh-100  ">
+
+
+
+                                <div >
+
+                                    <div>
+
+
+
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                                <tr>
+                                                    <td id="colorTituloRF">Requisito</td>
+                                                    <td align="center" id="colorTituloRF">Estado<strong> &nbsp;
+                                                        </strong>
+                                                    </td>
+                                               
+                                                </tr>
+                                                <tr>
+                                                    <td>Existen saldos disponibles suficientes para realizar la modificación presupuestaria </td>
+                                                    <td >
+                                                        <select class="form-control custom-select" [(ngModel)]="reformaModelo.dicatemPresupuestaria1" >
+                                                            <option value="SI">SI</option>
+                                                            <option value="NO">NO</option>
+                    
+                                                        </select>
+                                                    </td>
+
+                                                 
+
+                                                </tr>
+                                                <tr>
+                                                    <td>La modificación presupuestaria que consta en el punto 1.2 de este informe está correcta </td>
+                                                    <td>
+                                                        <select class="form-control custom-select"[(ngModel)]="reformaModelo.dicatemPresupuestaria2" >
+                                                            <option value="SI">SI</option>
+                                                            <option value="NO">NO</option>
+                    
+                                                        </select>
+                                                    </td>
+                                               
+
+                                                </tr>
+
+                                                <tr>
+                                                    <td>Descripción / análisis y verificación: </td>
+                                                    <td >
+                                                        <textarea  type="text " class="form-control "[(ngModel)]="reformaModelo.dicatemPresupuestariaDescripcion">
+                                                        </textarea>
+                                                    </td>
+                                               
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--FIN MODIFICACIÓN PRESUPUESTARIA-->
+
+                        <!--INICO FIRMA MODIFICACIÓN PRESUPUESTARIA-->
+                        <div class="card-body ">
+                            <div class="row m-0 justify-content-center align-items-center vh-100  ">
+                                <div>
+                                    <div>
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                                <tr>
+                                                    <td align="center" id="colorTituloRF"> </td>
+                                                    <td align="center" id="colorTituloRF">Nombre</td>
+                                                    <td align="center" id="colorTituloRF">Cargo</td>
+                                                    <td align="center" id="colorTituloRF">Firma</td>
+                                                    <td align="center" id="colorTituloRF">Fecha</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Revisado por: </td>
+                                                    <td>
+                                                            <input type="text " class="form-control "[(ngModel)]="reformaModelo.firmaDicatamen">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text " class="form-control "[(ngModel)]="reformaModelo.firmaDicatamen1">
+                                                    </td>
+                                                    <td style="width:200px"></td>
+                                                    <td>
+                                                            <input type="date" class="form-control" [(ngModel)]="reformaModelo.firmaDicatamen2">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Supervisado por: </td>
+                                                    <td>
+                                                            <input type="text " class="form-control "[(ngModel)]="reformaModelo.firmaDicatamen3">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text " class="form-control "[(ngModel)]="reformaModelo.firmaDicatamen4">
+                                                    </td>
+                                                    <td style="width:200px"></td>
+                                                    <td>
+                                                            <input type="date" class="form-control" [(ngModel)]="reformaModelo.firmaDicatamen5">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Aprobado por: </td>
+                                                    <td>
+                                                            <input type="text " class="form-control "[(ngModel)]="reformaModelo.firmaDicatamen6">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text " class="form-control "[(ngModel)]="reformaModelo.firmaDicatamen7">
+                                                    </td>
+                                                    <td style="width:200px"></td>
+                                                    <td>
+                                                            <input type="date" class="form-control" [(ngModel)]="reformaModelo.firmaDicatamen8">
+                                                    </td>
+                                                </tr>
+                            
+
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--FIN FIRMA MODIFICACIÓN PRESUPUESTARIA-->
+
+                        <!-- Fin cambio de diseño -->
+                        <div class="alert alert-success " role="alert "><em>Los requirentes declaran que se comprometen a dar cumplimiento a los procesos establecidos en el Código Orgánico de Planificación y Finanzas Públicas, la Ley Orgánica del Sistema Nacional de Contratación Pública, La Ley Orgánica reformatoria del Código Orgánico Integral Penal en materia anticorrupción, demás normativa vigente para el uso de recursos públicos.</em></div>
+
+
+                        <!--INICIO EFIRMA APROBACION-->
+                        <div class="card-body ">
+                            <div class="row m-0 justify-content-center align-items-center vh-100  ">
+                                <div>
+                                    <div>
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                                <tr>
+                                                    <td align="center" id="colorTituloRF"> </td>
+                                                    <td align="center" id="colorTituloRF">Nombre</td>
+                                                    <td align="center" id="colorTituloRF">Cargo</td>
+                                                    <td align="center" id="colorTituloRF">Firma</td>
+                                                    <td align="center" id="colorTituloRF">Fecha</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Revisado por: </td>
+                                                    <td>
+                                                        <select class="form-control custom-select" [(ngModel)]="reformaModelo.firmaAprobacion">
+                                                            <option value="Text">Seleccione el cargo</option>
+                                                            <option value="Text">Tcrn. Carlos M. Estrella P.</option>
+                                                            <option value="Text">Vicerrector Académico General</option>
+                                                            <option value="Text">Crnl. EMC. Roberto Jiménez Villarreal, D</option>
+                                                            <option value="Text">N/A</option>
+    
+                                                        </select>
+                                                        <select class="form-control custom-select" [(ngModel)]="reformaModelo.firmaAprobacion1">
+                                                            <option value="Text">Seleccione el cargo</option>
+                                                            <option value="Text">Tcrn. Carlos M. Estrella P.</option>
+                                                            <option value="Text">Tcrn. Victor Villavicencio, PhD.</option>
+                                                            <option value="Text">Crnl. EMC. Roberto Jiménez Villarreal, D
+            
+                                                            </option>
+                                                            <option value="Text">N/A</option>
+    
+                                                        </select>
+                                                        <select class="form-control custom-select" [(ngModel)]="reformaModelo.firmaAprobacion2">
+                                                            <option value="Text">Seleccione el cargo</option>
+                                                            <option value="Text">Tcrn. Carlos M. Estrella P.</option>
+                                                            <option value="Text">Tcrn. Victor Villavicencio, PhD.</option>
+                                                            <option value="Text">Crnl. EMC. Roberto Jiménez Villarreal, D
+
+                                                    </option>
+                                                    <option value="Text">N/A</option>
+    
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select class="form-control custom-select" [(ngModel)]="reformaModelo.firmaAprobacion3">
+                                                            <option value="Text">Seleccione el cargo</option>
+                                                            <option value="Text">Director de la Unidad de Planificación y Desarrollo Institucional</option>
+                                                            <option value="Text">Vicerrector Académico General</option>
+                                                            <option value="Text">Rector</option>
+                                                            <option value="Text">N/A</option>
+    
+                                                        </select>
+                                                        <select class="form-control custom-select" [(ngModel)]="reformaModelo.firmaAprobacion4">
+                                                            <option value="Text">Seleccione el cargo</option>
+                                                            <option value="Text">Director de la Unidad de Planificación y Desarrollo Institucional</option>
+                                                            <option value="Text">Vicerrector Académico General</option>
+                                                            <option value="Text">Rector</option>
+                                                            <option value="Text">N/A</option>
+    
+                                                        </select>
+                                                        <select class="form-control custom-select" [(ngModel)]="reformaModelo.firmaAprobacion5">
+                                                            <option value="Text">Seleccione el cargo</option>
+                                                            <option value="Text">Director de la Unidad de Planificación y Desarrollo Institucional</option>
+                                                            <option value="Text">Vicerrector Académico General</option>
+                                                            <option value="Text">Rector</option>
+                                                            <option value="Text">N/A</option>
+    
+                                                        </select>
+                                                    </td>
+                                                    <td style="width:200px"></td>
+                                                    <td>
+                                                        <input type="date" class="form-control" placeholder="dd/mm/yyyy"
+                                                            formControlName="firmaAprobacion6"> <br>
+    
+                                                        <input type="date" class="form-control" placeholder="dd/mm/yyyy"
+                                                            formControlName="firmaAprobacion7"> <br>
+    
+                                                        <input type="date" class="form-control" placeholder="dd/mm/yyyy"
+                                                            formControlName="firmaAprobacion8"><br>
+                                                    </td>
+                                                </tr>
+    
+                                            </tbody>
+    
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!--FIN FIRMA APROBACION-->
+
+                    </div>
+                    <div class="form-actions">
+                        <button  class="btn btn-success" (click)="update()"> ACTUALIZAR<i
+                                class="fa fa-check"></i></button>
+
+                    </div>
+             
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Row -->

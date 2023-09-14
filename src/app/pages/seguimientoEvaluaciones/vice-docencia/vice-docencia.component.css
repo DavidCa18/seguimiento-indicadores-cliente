@@ -1,0 +1,163 @@
+#tableColor {
+    background:white;
+}
+#trColor {
+    background:rgb(38, 39, 39);
+    -webkit-text-fill-color: rgb(252, 252, 252);
+}
+#texto{
+    font-size: x-large;
+}
+
+
+#colorTitulo{
+    background-color: rgb(121, 119, 118);
+   text-decoration-color:white;
+ }
+
+ #impri{
+    background: rgb(172, 35, 214);
+    color:white;
+}
+#colorTituloRF{
+    background-color: rgb(116, 116, 116);
+    color:rgb(5, 5, 5);
+}
+#large-textarea textarea {
+   
+    height: 20em;
+    width: 500px;
+ }
+ #colorObservaciones{
+     color: red;
+     text-decoration: red;
+ }
+ .img2{
+    width: 300px; 
+    height: 100px;
+  }
+  #inputTa{
+    width: 200px;
+  }
+  #monto {
+    width: 190px;
+  }
+
+  .text{
+
+    font-size: 10px;
+  }
+
+
+ /* estilo subida de imagenes drog */
+
+.progress {
+    margin-bottom: 30px;
+  }
+  
+  .fileupload {
+    /*background-image: url("../../../assets/upload-icon.png");*/
+    background-repeat: no-repeat;
+    background-size: 100px;
+    background-position: center;
+    background-color: #ffffff;
+    height: 200px;
+    width: 100%;
+    cursor: pointer;
+    /* border: 2px dashed #0f68ff; */
+    border-radius: 6px;
+    margin-bottom: 25px;
+    background-position: center 28px;
+  }
+  
+  .ddinfo {
+    display: block;
+    text-align: center;
+    padding-top: 130px;
+    color: #05090c;
+  }
+  
+  .image-list {
+    display: flex;
+    width: 100%;
+    background: #C2DFFC;
+    border: 1px solid;
+    border-radius: 3px;
+    padding: 10px 10px 10px 15px;
+    margin-bottom: 10px;
+  }
+  
+  .image-list p {
+    line-height: normal;
+    padding: 0;
+    margin: 0 0 0 14px;
+    display: inline-block;
+    position: relative;
+    top: -2px;
+    color: #150938;
+    font-size: 14px;
+  }
+  
+  .message {
+    text-align: center;
+    color: rgb(7, 190, 31);
+  }
+  
+  .remove {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .profile {
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 4px;
+    display: inline-block;
+  }
+  
+  .profile img {
+    width: 100%;
+  }
+
+  .no-hover {
+    --background-hover: var(--background);
+  }
+  
+  .btm{
+    border: none;
+    width: 100%;
+    color: white;
+    font-size: 22px;
+    background: #3f73c8be;
+    padding: 0px 0px;
+    border-radius: 15px;
+    cursor: pointer;
+  }
+  .celda{
+    border: #cdcdcd medium solid;
+  }
+  #colorTituloRF{
+    background-color: rgb(121, 119, 118);
+    color:white;
+  }
+
+  .bg-danger {
+    color: #c73f3f !important;
+    background-color: rgb(245, 102, 102);
+  }
+  .bg-warning {
+    color: #000000 !important;
+    background-color: rgb(247, 244, 82);
+  }
+  .bg-success {
+    color: #000000 !important;
+    background-color: rgb(44, 241, 120);
+  }
+
+  .resultados{
+    color: rgb(77, 45, 5);
+    border-color: rgb(0, 0, 0);
+    border-width: 3px;
+  }

@@ -1,0 +1,840 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12" style="text-align: right !important; margin-top: 20px !important;">
+      <button class="btn btn-success" (click)="regresarPagina()">REGRESAR<i
+          class="fa fa-check ml-2"></i></button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12" style="padding-top: 10px !important; padding-bottom: 10px !important;">
+
+      <div [formGroup]="registerForm">
+
+        <div class="form-row" *ngIf="!bloqueoEdicion && indicadorModelo.estadoSolicitud == 'ENVIADA'">
+          <div class="form-group col-md-12" style="margin-bottom: 5px !important;">
+            <h4 class="text-info">SE HA REALIZADO UNA SOLICITUD DE MODIFICACIÓN DE ESTE INDICADOR</h4>
+            <div>
+              <small><b>NOTA:</b> Para que el usuario pueda realizar la modificación de este indicador usted, debe
+                <b>APROBAR</b> ó <b>RECHAZAR</b> esta solicitud</small>
+              <select (change)="gestionAutorizacion()" class="form-control" formControlName="autorizacion"
+                [(ngModel)]="indicadorModelo.autorizacion">
+                <option class="texto" value="APROBADA">Aprobar Solicitud</option>
+                <option class="texto" value="RECHAZADA">Rechazar Solicitud</option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="form-row" *ngIf="bloqueoEdicion">
+          <div class="form-group col-md-12" style="margin-bottom: 5px !important;"
+            *ngIf="indicadorModelo.estadoSolicitud == 'NULA'">
+            <small><b>NOTA:</b> Para realizar la modificación del indicador primero debe soolicitar autorización al
+              usuario <b>UPDI</b></small>
+            <div style="text-align: center !important; margin: 10px !important;">
+              <h4 class="text-info">
+                <a (click)="solicitarAutorizacion()" style="cursor: pointer;"><u><b>SOLICITAR AUTORIZACIÓN PARA
+                      MODIFICAR EL INDICADOR</b></u></a>
+              </h4>
+            </div>
+          </div>
+          <div class="form-group col-md-12" style="margin-bottom: 5px !important;">
+            <div class="alert alert-success" role="alert" *ngIf="indicadorModelo.estadoSolicitud == 'APROBADA'">
+              <span><b>Estado Solicitud: </b>Su solicitud de modificación ha sido </span><b
+                style="color: darkgreen;">APROBADA</b>
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="indicadorModelo.estadoSolicitud == 'RECHAZADA'">
+              <span><b>Estado Solicitud: </b>Su solicitud de modificación ha sido <b
+                style="color: darkred;">RECHAZADA.</b> <br>
+                Intente nuevamente dando click en el siguiente <a  style="cursor: pointer;" class="alert-link" (click)="solicitarAutorizacionNuevamente()"><b>enlace.</b></a>.</span>
+            </div>
+            <div class="alert alert-warning" role="alert" *ngIf="indicadorModelo.estadoSolicitud == 'ENVIADA'">
+              <span><b>Estado Solicitud: </b>Su solicitud de modificación ha sido </span><b
+                style="color: darkorange;">ENVIADA</b>
+            </div>
+          </div>
+        </div>
+
+        <hr />
+
+        <div class="form-row">
+
+          <div class="col-md-12">
+
+            <div class="accordion" id="accordionExample">
+
+              <div class="card">
+
+                <div class="card-header btn btn-success accordion" data-toggle="collapse" data-target="#collapseIndicador"
+                  aria-expanded="false" aria-controls="collapseIndicador">
+                  <h4 class="m-b-0 text-white text-left">INFORMACIÓN PERTENECIENTE AL INDICADOR</h4>
+                </div>
+  
+                <div class="card-body collapse show" id="collapseIndicador"  data-parent="#accordionExample" aria-labelledby="collapseIndicador" *ngIf="bloqueoFormulario">
+  
+                  <div class="form-row">
+  
+                    <div class="form-group col-md-12">
+                      <label class="control-label">SEDE / VICERECTORADO / UNIDAD / PROYECTO</label>
+                      <select class="form-control" formControlName="unidad" [(ngModel)]="indicadorModelo.unidad" disabled>
+                        <option *ngFor="let unidad of unidades" value="{{ unidad.unidad }}"> {{ unidad.unidad }}</option>
+                      </select>
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">RESPONDE A</label>
+                      <select class="form-control custom-select" formControlName="responde"
+                        [(ngModel)]="indicadorModelo.responde" disabled>
+                        <option *ngFor="let resp of responder" value="{{ resp.responde }}"> {{ resp.responde }} </option>
+                      </select>
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">EVALUACIÓN DE DESEMPEÑO</label>
+                      <select class="form-control custom-select" formControlName="evaluacion"
+                        [(ngModel)]="indicadorModelo.evaluacion" disabled>
+                        <option value="SI">SI</option>
+                        <option value="NO">NO</option>
+                      </select>
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">MACRO PROCESO</label>
+                      <select class="form-control custom-select" formControlName="macroProceso"
+                        [(ngModel)]="indicadorModelo.macroProceso" disabled>
+                        <option *ngFor="let mac of macro" value="{{ mac.macroProceso }}"> {{ mac.macroProceso }} </option>
+                      </select>
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">PRODUCTO</label>
+                      <input type="text" id="firstName" class="form-control" placeholder="Producto"
+                        formControlName="producto" [(ngModel)]="indicadorModelo.producto" disabled />
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">INDICADOR</label>
+                      <input type="text" id="firstName" class="form-control" placeholder="Indicador"
+                        formControlName="indicador" [(ngModel)]="indicadorModelo.indicador" disabled />
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">FÓRMULA</label>
+                      <input type="text" id="firstName" class="form-control" placeholder="Fórmula"
+                        formControlName="formula" [(ngModel)]="indicadorModelo.formula" disabled />
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">DESCRIPCIÓN</label>
+                      <input type="text" id="firstName" class="form-control" placeholder="Descripción"
+                        formControlName="descripcion" [(ngModel)]="indicadorModelo.descripcion" disabled />
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">RESPONSABLE</label>
+                      <select class="form-control custom-select" formControlName="responsable"
+                        [(ngModel)]="indicadorModelo.responsable" disabled>
+                        <option value="VICERRECTOR">VICERRECTOR</option>
+                        <option value="DIRECTOR UNIDAD">DIRECTOR UNIDAD</option>
+                        <option value="DIRECTOR DEPARTAMENTO"> DIRECTOR DEPARTAMENTO</option>
+                        <option value="COORDINADOR DE PLANIFICACIÓN"> COORDINADOR DE PLANIFICACIÓN</option>
+                      </select>
+                    </div>
+  
+                    <div class="form-group col-md-12">
+                      <label class="control-label">NOMBRE RESPONSABLE</label>
+                      <input type="text" id="firstName" class="form-control" placeholder="Nombre"
+                        formControlName="nombreResponsable" [(ngModel)]="indicadorModelo.nombreResponsable" disabled />
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">FECHA INICIO MEDICIÓN</label>
+                      <input type="date" class="form-control" placeholder="dd/mm/yyyy" formControlName="fechaMedicion"
+                        [(ngModel)]="indicadorModelo.fechaMedicion" disabled />
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">LÍNEA BASE</label>
+                      <input type="number" id="firstName" class="form-control" placeholder="Linea base"
+                        formControlName="lineaBase" [(ngModel)]="indicadorModelo.lineaBase" disabled />
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">COMPORTAMIENTO</label>
+                      <select class="form-control custom-select" formControlName="comportamiento"
+                        [(ngModel)]="indicadorModelo.comportamiento" disabled>
+                        <option value="DISCRETO ACUMULADO"> DISCRETO ACUMULADO </option>
+                        <option value="DISCRETO POR PERIODO"> DISCRETO POR PERIODO </option>
+                        <option value="CONTINUO">CONTINUO</option>
+                      </select>
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">UNIDAD DE MEDIDA</label>
+                      <select class="form-control custom-select" formControlName="unidadMedida"
+                        [(ngModel)]="indicadorModelo.unidadMedida" disabled>
+                        <option value="ACTIVIDAD">ACTIVIDAD</option>
+                        <option value="DÍAS">DÍAS</option>
+                        <option value="ESCALA">ESCALA</option>
+                        <option value="ESCALA LIKERT">ESCALA LIKERT</option>
+                        <option value="HORAS ">HORAS</option>
+                        <option value="MINUTOS">MINUTOS</option>
+                        <option value="NÚMERO">NÚMERO</option>
+                        <option value="PORCENTAJE">PORCENTAJE</option>
+                      </select>
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">SENTIDO DE LA MEDICIÓN</label>
+                      <select class="form-control custom-select" formControlName="sentidoMedicion"
+                        [(ngModel)]="indicadorModelo.sentidoMedicion" disabled>
+                        <option value="ASCENDENTE">ASCENDENTE</option>
+                        <option value="DESCENDENTE">DESCENDENTE</option>
+                      </select>
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">META</label>
+                      <input type="number" id="firstName" class="form-control" placeholder="Meta" formControlName="meta"
+                        [(ngModel)]="indicadorModelo.meta" disabled />
+                    </div>
+  
+                    <div class="form-group col-md-12">
+                      <label class="control-label">PERIOCIDAD</label>
+                      <select [(ngModel)]="indicadorModelo.periodicidad" class="form-control custom-select"
+                        [formControl]="selected" disabled>
+                        <option selected>SELECCIONE</option>
+                        <option value="MENSUAL">MENSUAL</option>
+                        <option value="TRIMESTRAL">TRIMESTRAL</option>
+                        <option value="CUATRIMESTRAL">CUATRIMESTRAL</option>
+                        <option value="SEMESTRAL">SEMESTRAL</option>
+                        <option value="ANUAL">ANUAL</option>
+                      </select>
+                    </div>
+  
+                  </div>
+  
+                  <div class="form-row" *ngIf="mostrar">
+                    <div class="col-12 table-responsive">
+                      <table class="table table-hover table-sm">
+                        <thead>
+                          <tr class="table-success">
+                            <th scope="col">#</th>
+                            <th scope="col">MESES</th>
+                            <th scope="col">CANTIDAD</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>ENERO</td>
+                            <td><input type="number" id="firstName" class="form-control" placeholder=""
+                                (change)="validarMetaAnual()" formControlName="enero" [(ngModel)]="indicadorModelo.enero"
+                                disabled /></td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2</th>
+                            <td>FEBRERO</td>
+                            <td> <input type="number" id="firstName" class="form-control" placeholder=""
+                                (change)="validarMetaAnual()" formControlName="febrero"
+                                [(ngModel)]="indicadorModelo.febrero" disabled /></td>
+                          </tr>
+                          <tr>
+                            <th scope="row">3</th>
+                            <td>MARZO</td>
+                            <td><input type="number" id="firstName" class="form-control" placeholder=""
+                                (change)="validarMetaAnual()" formControlName="marzo" [(ngModel)]="indicadorModelo.marzo"
+                                disabled /></td>
+                          </tr>
+                          <tr>
+                            <th scope="row">4</th>
+                            <td>ABRIL</td>
+                            <td><input type="number" id="firstName" class="form-control" placeholder=""
+                                (change)="validarMetaAnual()" formControlName="abril" [(ngModel)]="indicadorModelo.abril"
+                                disabled /></td>
+                          </tr>
+  
+                          <tr>
+                            <th scope="row">5</th>
+                            <td>MAYO</td>
+                            <td><input type="number" id="firstName" class="form-control" placeholder=""
+                                (change)="validarMetaAnual()" formControlName="mayo" [(ngModel)]="indicadorModelo.mayo"
+                                disabled />
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">6</th>
+                            <td>JUNIO</td>
+                            <td><input type="number" id="firstName" class="form-control" placeholder=""
+                                (change)="validarMetaAnual()" formControlName="junio" [(ngModel)]="indicadorModelo.junio"
+                                disabled /></td>
+                          </tr>
+                          <tr>
+                            <th scope="row">7</th>
+                            <td>JULIO</td>
+                            <td><input type="number" id="firstName" class="form-control" placeholder=""
+                                (change)="validarMetaAnual()" formControlName="julio" [(ngModel)]="indicadorModelo.julio"
+                                disabled /></td>
+                          </tr>
+                          <tr>
+                            <th scope="row">8</th>
+                            <td>AGOSTO</td>
+                            <td><input type="number" id="firstName" class="form-control" placeholder=""
+                                (change)="validarMetaAnual()" formControlName="agosto"
+                                [(ngModel)]="indicadorModelo.agosto" disabled /></td>
+                          </tr>
+                          <tr>
+                            <th scope="row">9</th>
+                            <td>SEPTIEMBRE</td>
+                            <td><input type="number" id="firstName" class="form-control" placeholder=""
+                                (change)="validarMetaAnual()" formControlName="septiembre"
+                                [(ngModel)]="indicadorModelo.septiembre" disabled /></td>
+                          </tr>
+                          <tr>
+                            <th scope="row">10</th>
+                            <td>OCTUBRE</td>
+                            <td><input type="number" id="firstName" class="form-control" placeholder=""
+                                (change)="validarMetaAnual()" formControlName="octubre"
+                                [(ngModel)]="indicadorModelo.octubre" disabled /></td>
+                          </tr>
+                          <tr>
+                            <th scope="row">11</th>
+                            <td>NOVIEMBRE</td>
+                            <td><input type="number" id="firstName" class="form-control" placeholder=""
+                                (change)="validarMetaAnual()" formControlName="noviembre"
+                                [(ngModel)]="indicadorModelo.noviembre" disabled /></td>
+                          </tr>
+                          <tr>
+                            <th scope="row">12</th>
+                            <td>DICIEMBRE</td>
+                            <td><input type="number" id="firstName" class="form-control" placeholder=""
+                                (change)="validarMetaAnual()" formControlName="diciembre"
+                                [(ngModel)]="indicadorModelo.diciembre" disabled /></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+  
+                  <div class="form-row" *ngIf="mostrar2">
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">TRIMESTRE 1</label>
+                      <input type="number" id="firstName" class="form-control" placeholder=""
+                        (change)="validarMetaAnual()" formControlName="trimestre1"
+                        [(ngModel)]="indicadorModelo.trimestre1" disabled />
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">TRIMESTRE 2</label>
+                      <input type="number" id="firstName" class="form-control" placeholder=""
+                        (change)="validarMetaAnual()" formControlName="trimestre2"
+                        [(ngModel)]="indicadorModelo.trimestre2" disabled />
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">TRIMESTRE 3</label>
+                      <input type="number" id="firstName" class="form-control" placeholder=""
+                        (change)="validarMetaAnual()" formControlName="trimestre3"
+                        [(ngModel)]="indicadorModelo.trimestre3" disabled />
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">TRIMESTRE 4</label>
+                      <input type="number" id="firstName" class="form-control" placeholder=""
+                        (change)="validarMetaAnual()" formControlName="trimestre4"
+                        [(ngModel)]="indicadorModelo.trimestre4" disabled />
+                    </div>
+  
+                  </div>
+  
+                  <div class="form-row" *ngIf="mostrar3">
+  
+                    <div class="form-group col-md-12">
+                      <label class="control-label">CUATRIMESTRAL 1</label>
+                      <input type="number" id="firstName" class="form-control" placeholder=""
+                        (change)="validarMetaAnual()" formControlName="cuatrimestral1"
+                        [(ngModel)]="indicadorModelo.cuatrimestral1" disabled />
+                    </div>
+  
+                    <div class="form-group col-md-12">
+                      <label class="control-label">CUATRIMESTRAL 2</label>
+                      <input type="number" id="firstName" class="form-control" placeholder=""
+                        (change)="validarMetaAnual()" formControlName="cuatrimestral2"
+                        [(ngModel)]="indicadorModelo.cuatrimestral2" disabled />
+                    </div>
+  
+                    <div class="form-group col-md-12">
+                      <label class="control-label">CUATRIMESTRAL 3</label>
+                      <input type="number" id="firstName" class="form-control" placeholder=""
+                        (change)="validarMetaAnual()" formControlName="cuatrimestral3"
+                        [(ngModel)]="indicadorModelo.cuatrimestral3" disabled />
+                    </div>
+  
+                  </div>
+  
+                  <div class="form-row" *ngIf="mostrar4">
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">SEMESTRAL 1</label>
+                      <input type="number" id="firstName" class="form-control" placeholder=""
+                        (change)="validarMetaAnual()" formControlName="semestral1"
+                        [(ngModel)]="indicadorModelo.semestral1" disabled />
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">SEMESTRAL 2</label>
+                      <input type="number" id="firstName" class="form-control" placeholder=""
+                        (change)="validarMetaAnual()" formControlName="semestral2"
+                        [(ngModel)]="indicadorModelo.semestral2" disabled />
+                    </div>
+  
+                  </div>
+  
+                  <div class="form-row" *ngIf="mostrar5">
+  
+                    <div class="form-group col-md-12">
+                      <label class="control-label">ANUAL</label>
+                      <input type="number" id="firstName" class="form-control" placeholder=""
+                        (change)="validarMetaAnual()" formControlName="anual" [(ngModel)]="indicadorModelo.anual"
+                        disabled />
+                    </div>
+  
+                  </div>
+  
+                  <div class="form-row">
+  
+                    <div class="form-group col-md-12">
+                      <label class="control-label">OBSERVACIONES</label>
+                      <input type="text" id="firstName" class="form-control" placeholder=""
+                        formControlName="observaciones" [(ngModel)]="indicadorModelo.observaciones" disabled />
+                    </div>
+  
+                  </div>
+  
+                  <div class="form-row">
+                    <div class="form-group col-md-12">
+                      <small *ngIf="campoNoValido('unidad')"> * Seleccione una unidad es obligatorio </small>
+                      <small *ngIf="campoNoValido('responde')"> *A quien responde es obligatorio y tiene que ser válido
+                      </small>
+                      <small *ngIf="campoNoValido('evaluacion')"> * Seleccione una unidad es obligatorio </small>
+                      <small *ngIf="campoNoValido('macroProceso')"> * Seleccione un macro proceso es obligatorio </small>
+                      <small *ngIf="campoNoValido('producto')"> * escriba producto es obligatorio </small>
+                      <small *ngIf="campoNoValido('indicador')"> * Escriba un indicador es obligatorio </small>
+                      <small *ngIf="campoNoValido('formula')"> * Escriba una formula es obligatorio </small>
+                      <small *ngIf="campoNoValido('descripcion')"> * Escriba una descripcion es obligatorio </small>
+                      <small *ngIf="campoNoValido('responsable')"> * Seleccione un responsable es obligatorio </small>
+                      <small *ngIf="campoNoValido('nombreResponsable')"> * Escriba un nombre es obligatorio </small>
+                      <small *ngIf="campoNoValido('fechaMedicion')"> * Seleccione una fecha es obligatorio </small>
+                      <small *ngIf="campoNoValido('lineaBase')"> * Escriba en la linea base es obligatorio </small>
+                      <small *ngIf="campoNoValido('comportamiento')"> * Seleccione un comportamiento es obligatorio
+                      </small>
+                      <small *ngIf="campoNoValido('unidadMedida')"> * Seleccione una unidad de medida es obligatorio
+                      </small>
+                      <small *ngIf="campoNoValido('sentidoMedicion')"> * Seleccione sentido de medición es obligatorio
+                      </small>
+                      <small *ngIf="campoNoValido('meta')"> * Escriba una meta es obligatorio </small>
+                      <small *ngIf="campoNoValido('observaciones')"> *Escribe una observación es obligatorio </small>
+                    </div>
+                  </div>
+  
+                  <div class="form-row">
+                    <div class="col-md-12" style="text-align: right !important;">
+                      <button class="btn btn-success" (click)="update()" disabled> ACTUALIZAR INFORMACIÓN &nbsp;<i
+                          class="fa fa-save"></i> </button>
+                    </div>
+                  </div>
+  
+                </div>
+  
+                <div class="card-body collapse show" id="collapseIndicador" data-parent="#accordionExample" aria-labelledby="collapseIndicador" *ngIf="!bloqueoFormulario">
+  
+                  <div class="form-row">
+  
+                    <div class="form-group col-md-12">
+                      <label class="control-label">SEDE / VICERECTORADO / UNIDAD / PROYECTO </label>
+                      <select class="form-control" formControlName="unidad" [(ngModel)]="indicadorModelo.unidad">
+                        <option *ngFor="let unidad of unidades" value="{{ unidad.unidad }}"> {{ unidad.unidad }}</option>
+                      </select>
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">RESPONDE A</label>
+                      <select class="form-control custom-select" formControlName="responde"
+                        [(ngModel)]="indicadorModelo.responde">
+                        <option *ngFor="let resp of responder" value="{{ resp.responde }}"> {{ resp.responde }} </option>
+                      </select>
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">EVALUACIÓN DE DESEMPEÑO</label>
+                      <select class="form-control custom-select" formControlName="evaluacion"
+                        [(ngModel)]="indicadorModelo.evaluacion">
+                        <option value="SI">SI</option>
+                        <option value="NO">NO</option>
+                      </select>
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">MACRO PROCESO</label>
+                      <select class="form-control custom-select" formControlName="macroProceso"
+                        [(ngModel)]="indicadorModelo.macroProceso">
+                        <option *ngFor="let mac of macro" value="{{ mac.macroProceso }}"> {{ mac.macroProceso }} </option>
+                      </select>
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">PRODUCTO</label>
+                      <input type="text" id="firstName" class="form-control" placeholder="Producto"
+                        formControlName="producto" [(ngModel)]="indicadorModelo.producto" />
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">INDICADOR</label>
+                      <input type="text" id="firstName" class="form-control" placeholder="Indicador"
+                        formControlName="indicador" [(ngModel)]="indicadorModelo.indicador" />
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">FÓRMULA</label>
+                      <input type="text" id="firstName" class="form-control" placeholder="Fórmula"
+                        formControlName="formula" [(ngModel)]="indicadorModelo.formula" />
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">DESCRIPCIÓN</label>
+                      <input type="text" id="firstName" class="form-control" placeholder="Descripción"
+                        formControlName="descripcion" [(ngModel)]="indicadorModelo.descripcion" />
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">RESPONSABLE</label>
+                      <select class="form-control custom-select" formControlName="responsable"
+                        [(ngModel)]="indicadorModelo.responsable">
+                        <option value="VICERRECTOR">VICERRECTOR</option>
+                        <option value="DIRECTOR UNIDAD">DIRECTOR UNIDAD</option>
+                        <option value="DIRECTOR DEPARTAMENTO"> DIRECTOR DEPARTAMENTO</option>
+                        <option value="COORDINADOR DE PLANIFICACIÓN"> COORDINADOR DE PLANIFICACIÓN</option>
+                      </select>
+                    </div>
+  
+                    <div class="form-group col-md-12">
+                      <label class="control-label">NOMBRE RESPONSABLE</label>
+                      <input type="text" id="firstName" class="form-control" placeholder="Nombre"
+                        formControlName="nombreResponsable" [(ngModel)]="indicadorModelo.nombreResponsable" />
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">FECHA INICIO MEDICIÓN</label>
+                      <input type="date" class="form-control" placeholder="dd/mm/yyyy" formControlName="fechaMedicion"
+                        [(ngModel)]="indicadorModelo.fechaMedicion" />
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">LÍNEA BASE</label>
+                      <input type="number" id="firstName" class="form-control" placeholder="Linea base"
+                        formControlName="lineaBase" [(ngModel)]="indicadorModelo.lineaBase" />
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">COMPORTAMIENTO</label>
+                      <select class="form-control custom-select" formControlName="comportamiento"
+                        [(ngModel)]="indicadorModelo.comportamiento">
+                        <option value="DISCRETO ACUMULADO"> DISCRETO ACUMULADO </option>
+                        <option value="DISCRETO POR PERIODO"> DISCRETO POR PERIODO </option>
+                        <option value="CONTINUO">CONTINUO</option>
+                      </select>
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">UNIDAD DE MEDIDA</label>
+                      <select class="form-control custom-select" formControlName="unidadMedida"
+                        [(ngModel)]="indicadorModelo.unidadMedida">
+                        <option value="ACTIVIDAD">ACTIVIDAD</option>
+                        <option value="DÍAS">DÍAS</option>
+                        <option value="ESCALA">ESCALA</option>
+                        <option value="ESCALA LIKERT">ESCALA LIKERT</option>
+                        <option value="HORAS ">HORAS</option>
+                        <option value="MINUTOS">MINUTOS</option>
+                        <option value="NÚMERO">NÚMERO</option>
+                        <option value="PORCENTAJE">PORCENTAJE</option>
+                      </select>
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">SENTIDO DE LA MEDICIÓN</label>
+                      <select class="form-control custom-select" formControlName="sentidoMedicion"
+                        [(ngModel)]="indicadorModelo.sentidoMedicion">
+                        <option value="ASCENDENTE">ASCENDENTE</option>
+                        <option value="DESCENDENTE">DESCENDENTE</option>
+                      </select>
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">META</label>
+                      <input type="number" id="firstName" class="form-control" placeholder="Meta" formControlName="meta"
+                        [(ngModel)]="indicadorModelo.meta" />
+                    </div>
+  
+                    <div class="form-group col-md-12">
+                      <label class="control-label">PERIOCIDAD</label>
+                      <select [(ngModel)]="indicadorModelo.periodicidad" class="form-control custom-select"
+                        [formControl]="selected">
+                        <option selected>SELECCIONE</option>
+                        <option value="MENSUAL">MENSUAL</option>
+                        <option value="TRIMESTRAL">TRIMESTRAL</option>
+                        <option value="CUATRIMESTRAL">CUATRIMESTRAL</option>
+                        <option value="SEMESTRAL">SEMESTRAL</option>
+                        <option value="ANUAL">ANUAL</option>
+                      </select>
+                    </div>
+  
+                  </div>
+  
+                  <div class="form-row" *ngIf="mostrar">
+                    <div class="col-12 table-responsive">
+                      <table class="table table-hover table-sm">
+                        <thead>
+                          <tr class="table-success">
+                            <th scope="col">#</th>
+                            <th scope="col">MESES</th>
+                            <th scope="col">CANTIDAD</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>ENERO</td>
+                            <td><input type="number" id="firstName" class="form-control" placeholder=""
+                                (change)="validarMetaAnual()" formControlName="enero"
+                                [(ngModel)]="indicadorModelo.enero" /></td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2</th>
+                            <td>FEBRERO</td>
+                            <td> <input type="number" id="firstName" class="form-control" placeholder=""
+                                (change)="validarMetaAnual()" formControlName="febrero"
+                                [(ngModel)]="indicadorModelo.febrero" /></td>
+                          </tr>
+                          <tr>
+                            <th scope="row">3</th>
+                            <td>MARZO</td>
+                            <td><input type="number" id="firstName" class="form-control" placeholder=""
+                                (change)="validarMetaAnual()" formControlName="marzo"
+                                [(ngModel)]="indicadorModelo.marzo" /></td>
+                          </tr>
+                          <tr>
+                            <th scope="row">4</th>
+                            <td>ABRIL</td>
+                            <td><input type="number" id="firstName" class="form-control" placeholder=""
+                                (change)="validarMetaAnual()" formControlName="abril"
+                                [(ngModel)]="indicadorModelo.abril" /></td>
+                          </tr>
+  
+                          <tr>
+                            <th scope="row">5</th>
+                            <td>MAYO</td>
+                            <td><input type="number" id="firstName" class="form-control" placeholder=""
+                                (change)="validarMetaAnual()" formControlName="mayo" [(ngModel)]="indicadorModelo.mayo" />
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">6</th>
+                            <td>JUNIO</td>
+                            <td><input type="number" id="firstName" class="form-control" placeholder=""
+                                (change)="validarMetaAnual()" formControlName="junio"
+                                [(ngModel)]="indicadorModelo.junio" /></td>
+                          </tr>
+                          <tr>
+                            <th scope="row">7</th>
+                            <td>JULIO</td>
+                            <td><input type="number" id="firstName" class="form-control" placeholder=""
+                                (change)="validarMetaAnual()" formControlName="julio"
+                                [(ngModel)]="indicadorModelo.julio" /></td>
+                          </tr>
+                          <tr>
+                            <th scope="row">8</th>
+                            <td>AGOSTO</td>
+                            <td><input type="number" id="firstName" class="form-control" placeholder=""
+                                (change)="validarMetaAnual()" formControlName="agosto"
+                                [(ngModel)]="indicadorModelo.agosto" /></td>
+                          </tr>
+                          <tr>
+                            <th scope="row">9</th>
+                            <td>SEPTIEMBRE</td>
+                            <td><input type="number" id="firstName" class="form-control" placeholder=""
+                                (change)="validarMetaAnual()" formControlName="septiembre"
+                                [(ngModel)]="indicadorModelo.septiembre" /></td>
+                          </tr>
+                          <tr>
+                            <th scope="row">10</th>
+                            <td>OCTUBRE</td>
+                            <td><input type="number" id="firstName" class="form-control" placeholder=""
+                                (change)="validarMetaAnual()" formControlName="octubre"
+                                [(ngModel)]="indicadorModelo.octubre" /></td>
+                          </tr>
+                          <tr>
+                            <th scope="row">11</th>
+                            <td>NOVIEMBRE</td>
+                            <td><input type="number" id="firstName" class="form-control" placeholder=""
+                                (change)="validarMetaAnual()" formControlName="noviembre"
+                                [(ngModel)]="indicadorModelo.noviembre" /></td>
+                          </tr>
+                          <tr>
+                            <th scope="row">12</th>
+                            <td>DICIEMBRE</td>
+                            <td><input type="number" id="firstName" class="form-control" placeholder=""
+                                (change)="validarMetaAnual()" formControlName="diciembre"
+                                [(ngModel)]="indicadorModelo.diciembre" /></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+  
+                  <div class="form-row" *ngIf="mostrar2">
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">TRIMESTRE 1</label>
+                      <input type="number" id="firstName" class="form-control" placeholder=""
+                        (change)="validarMetaAnual()" formControlName="trimestre1"
+                        [(ngModel)]="indicadorModelo.trimestre1" />
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">TRIMESTRE 2</label>
+                      <input type="number" id="firstName" class="form-control" placeholder=""
+                        (change)="validarMetaAnual()" formControlName="trimestre2"
+                        [(ngModel)]="indicadorModelo.trimestre2" />
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">TRIMESTRE 3</label>
+                      <input type="number" id="firstName" class="form-control" placeholder=""
+                        (change)="validarMetaAnual()" formControlName="trimestre3"
+                        [(ngModel)]="indicadorModelo.trimestre3" />
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">TRIMESTRE 4</label>
+                      <input type="number" id="firstName" class="form-control" placeholder=""
+                        (change)="validarMetaAnual()" formControlName="trimestre4"
+                        [(ngModel)]="indicadorModelo.trimestre4" />
+                    </div>
+  
+                  </div>
+  
+                  <div class="form-row" *ngIf="mostrar3">
+  
+                    <div class="form-group col-md-12">
+                      <label class="control-label">CUATRIMESTRAL 1</label>
+                      <input type="number" id="firstName" class="form-control" placeholder=""
+                        (change)="validarMetaAnual()" formControlName="cuatrimestral1"
+                        [(ngModel)]="indicadorModelo.cuatrimestral1" />
+                    </div>
+  
+                    <div class="form-group col-md-12">
+                      <label class="control-label">CUATRIMESTRAL 2</label>
+                      <input type="number" id="firstName" class="form-control" placeholder=""
+                        (change)="validarMetaAnual()" formControlName="cuatrimestral2"
+                        [(ngModel)]="indicadorModelo.cuatrimestral2" />
+                    </div>
+  
+                    <div class="form-group col-md-12">
+                      <label class="control-label">CUATRIMESTRAL 3</label>
+                      <input type="number" id="firstName" class="form-control" placeholder=""
+                        (change)="validarMetaAnual()" formControlName="cuatrimestral3"
+                        [(ngModel)]="indicadorModelo.cuatrimestral3" />
+                    </div>
+  
+                  </div>
+  
+                  <div class="form-row" *ngIf="mostrar4">
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">SEMESTRAL 1</label>
+                      <input type="number" id="firstName" class="form-control" placeholder=""
+                        (change)="validarMetaAnual()" formControlName="semestral1"
+                        [(ngModel)]="indicadorModelo.semestral1" />
+                    </div>
+  
+                    <div class="form-group col-md-6">
+                      <label class="control-label">SEMESTRAL 2</label>
+                      <input type="number" id="firstName" class="form-control" placeholder=""
+                        (change)="validarMetaAnual()" formControlName="semestral2"
+                        [(ngModel)]="indicadorModelo.semestral2" />
+                    </div>
+  
+                  </div>
+  
+                  <div class="form-row" *ngIf="mostrar5">
+  
+                    <div class="form-group col-md-12">
+                      <label class="control-label">ANUAL</label>
+                      <input type="number" id="firstName" class="form-control" placeholder=""
+                        (change)="validarMetaAnual()" formControlName="anual" [(ngModel)]="indicadorModelo.anual" />
+                    </div>
+  
+                  </div>
+  
+                  <div class="form-row">
+  
+                    <div class="form-group col-md-12">
+                      <label class="control-label">OBSERVACIONES</label>
+                      <input type="text" id="firstName" class="form-control" placeholder=""
+                        formControlName="observaciones" [(ngModel)]="indicadorModelo.observaciones" />
+                    </div>
+  
+                  </div>
+  
+                  <div class="form-row">
+                    <div class="form-group col-md-12">
+                      <small *ngIf="campoNoValido('unidad')"> * Seleccione una unidad es obligatorio </small>
+                      <small *ngIf="campoNoValido('responde')"> *A quien responde es obligatorio y tiene que ser válido
+                      </small>
+                      <small *ngIf="campoNoValido('evaluacion')"> * Seleccione una unidad es obligatorio </small>
+                      <small *ngIf="campoNoValido('macroProceso')"> * Seleccione un macro proceso es obligatorio </small>
+                      <small *ngIf="campoNoValido('producto')"> * escriba producto es obligatorio </small>
+                      <small *ngIf="campoNoValido('indicador')"> * Escriba un indicador es obligatorio </small>
+                      <small *ngIf="campoNoValido('formula')"> * Escriba una formula es obligatorio </small>
+                      <small *ngIf="campoNoValido('descripcion')"> * Escriba una descripcion es obligatorio </small>
+                      <small *ngIf="campoNoValido('responsable')"> * Seleccione un responsable es obligatorio </small>
+                      <small *ngIf="campoNoValido('nombreResponsable')"> * Escriba un nombre es obligatorio </small>
+                      <small *ngIf="campoNoValido('fechaMedicion')"> * Seleccione una fecha es obligatorio </small>
+                      <small *ngIf="campoNoValido('lineaBase')"> * Escriba en la linea base es obligatorio </small>
+                      <small *ngIf="campoNoValido('comportamiento')"> * Seleccione un comportamiento es obligatorio
+                      </small>
+                      <small *ngIf="campoNoValido('unidadMedida')"> * Seleccione una unidad de medida es obligatorio
+                      </small>
+                      <small *ngIf="campoNoValido('sentidoMedicion')"> * Seleccione sentido de medición es obligatorio
+                      </small>
+                      <small *ngIf="campoNoValido('meta')"> * Escriba una meta es obligatorio </small>
+                      <small *ngIf="campoNoValido('observaciones')"> *Escribe una observación es obligatorio </small>
+                    </div>
+                  </div>
+  
+                  <div class="form-row">
+                    <div class="col-md-12" style="text-align: right !important;">
+                      <button class="btn btn-success" (click)="update()"> ACTUALIZAR INFORMACIÓN &nbsp;<i
+                          class="fa fa-save"></i> </button>
+                    </div>
+                  </div>
+  
+                </div>
+  
+              </div>
+  
+              <app-calculo-discreto-acumulado></app-calculo-discreto-acumulado>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>

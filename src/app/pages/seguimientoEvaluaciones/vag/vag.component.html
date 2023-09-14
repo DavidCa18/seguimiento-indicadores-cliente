@@ -1,0 +1,60 @@
+<div class="table-responsive">
+  <table class="table table-bordered" class="table table-hover" [formGroup]="vagForm">
+    <thead id="colorTituloRF">
+      <tr>
+        <th style="font-size: small;">ESTRUCTURA PRESUPUESTARIA</th>
+        <th style="font-size: small;">UNIDAD / DEPARTAMENTO</th>
+        <th style="font-size: small;">PROCENTAJE DE CUMPLIMIENTO PROGRAMADO DE EJECUCIÓN PRESUPUESTARIA</th>
+        <th style="font-size: small;">CATEGORÍA DE EJECUCIÓN PRESUPUESTRIA</th>
+        <th style="font-size: small;">% AVANCE FÍSICO(CUMPLIMIENTO METAS CORTE 31 DICIEMBRE)</th>
+        <th style="font-size: small;">CATEGORIA DE EJECUCIÓN DE METAS</th>
+        <th style="font-size: small;">INDICE DE GESTIÓN OPERATIVA</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr formArrayName="campos" *ngFor="let campo of campos.controls; let i = index">
+        <td>{{ campos.value[i].codigo }}</td>
+        <td style="font-size: small;">{{ campos.value[i].departamento }}</td>
+        <td [ngClass]="campos1.value[i].class">
+          <div [formGroupName]="i">
+            <input type="number" min="0" max="100" class="form-control" formControlName="porcentajeCumplimiento"
+              (change)="calcularPorcentajeCumplimiento(campos.value[i].porcentajeCumplimiento, i)">
+          </div>
+        </td>
+        <td style="font-size: small;">
+          {{ campos1.value[i].categoriaEjecucion }}
+        </td>
+
+        <td [ngClass]="campos2.value[i].class">
+          <div [formGroupName]="i">
+            <input type="number" min="0" max="100" class="form-control" formControlName="avanceFisico"
+              (change)="calcularAvanceFisico(campos.value[i].avanceFisico, i)">
+          </div>
+        </td>
+        <td style="font-size: small;">
+          {{ campos2.value[i].categoriaMetas }}
+        </td>
+        <td>
+          {{ campos.value[i].indiceGestion | percent :'2.1-2' }}
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2"></td>
+        <td class="resultados">{{ resultado.value[0].porcentajeCumplimiento | percent :'2.1-2' }}</td>
+        <td style="font-size: small;">{{ resultado.value[0].categoriaEjecucion }}</td>
+        <td class="resultados">{{ resultado.value[0].avanceFisico | percent :'2.1-2' }}</td>
+        <td style="font-size: small;">{{ resultado.value[0].categoriaMetas }}</td>
+        <td [ngClass]="resultado.value[0].class">{{ this.resultado.value[0].indiceGestion | percent :'2.1-2'}}</td>
+      </tr>
+
+
+    </tbody>
+  </table>
+  <div align="center" class="form-actions">
+    <button type="button" class="btn btn-success" (click)="createVag()
+    ">
+      Guardar<i class="fa fa-check"></i>
+    </button>
+  </div>
+</div>
